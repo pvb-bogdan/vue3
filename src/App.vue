@@ -1,20 +1,60 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <h1>{{title}}</h1>
+  <teleport to=".modals" v-if="showModal">
+    <ModalSlots
+      :theme="theme"
+      @closeModal="toggleModal">
+      <!-- slot whit a name-->
+      <template v-slot:links>
+        <a href="#">Link no.1</a>
+        <a href="#">Link no.2</a>
+      </template>
+      <!-- default content for slot-->
+      <h2>TESTAREA Modal 1</h2>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo, voluptatem!</p>
+    </ModalSlots>
+  </teleport>
+
+  <div v-if="showModal2">
+    <ModalSlots
+      @closeModal="toggleModal2">
+      <!-- default content for slot-->
+      <h2>TESTAREA Modal 2</h2>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo, voluptatem!</p>
+    </ModalSlots>
+  </div>
+  <button @click.shift="toggleModal">Open Modal (click+shift)</button>
+  <button @click="toggleModal2">Open Modal 2</button>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import ModalSlots from './components/ModalSlots'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  components: { ModalSlots },
+  data (){
+    return{
+      title:'Teleport Project :)',
+      theme: 'sale',
+      text: 'More text send from parent form props',
+      showModal: false,
+      showModal2: false
+    }
+  },
+  methods: {
+    toggleModal (){
+      this.showModal = !this.showModal
+    },
+    toggleModal2 (){
+      this.showModal2 = !this.showModal2
+    }
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -22,5 +62,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+
+  h1{
+    color:red;
+  }
 }
 </style>
