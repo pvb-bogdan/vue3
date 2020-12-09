@@ -23,6 +23,9 @@
       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo, voluptatem!</p>
     </ModalSlots>
   </div>
+  <div>
+    <test/>
+  </div>
   <button @click.shift="toggleModal">Open Modal (click+shift)</button>
   <button @click="toggleModal2">Open Modal 2</button>
 </template>
@@ -30,10 +33,11 @@
 <script>
 
 import ModalSlots from './components/ModalSlots'
+import test from './components/test_component'
 
 export default {
   name: 'App',
-  components: { ModalSlots },
+  components: { ModalSlots, test },
   data (){
     return{
       title:'Teleport Project :)',
