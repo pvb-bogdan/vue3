@@ -36,11 +36,12 @@
   height: 100%;
 }
 .modal {
-  width: 400px;
+  width: 900px;
   padding: 20px;
   margin: 100px auto;
   background: #fff;
   border-radius:10px;
+  box-shadow: 0 0 10px rgba(0,0,0,.5);
   &.sale {
     background: crimson;
     color: #fff;
